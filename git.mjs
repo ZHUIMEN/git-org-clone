@@ -15,7 +15,7 @@ if(!token||token ==='xxxx'){
     exitWithError('请前往GitHub申请Authorization： https://github.com/settings/apps')
       
 }
-if(org){
+if(!org){
     exitWithError('请填写 ./git.mjs -org orgName')    
 }
 const data = await fetch(`https://api.github.com/orgs/${org}/repos?per_page=100&type=all`,{

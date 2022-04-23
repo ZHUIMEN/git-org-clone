@@ -11,7 +11,7 @@ https://github.com/settings/apps
 ```
   ##### 2、curl to fetch  获取 token
 ```
-  curl -i -u userName:autho-toen "https://api.github.com/orgs/{org}/repos?per_page=100&page=1"
+  curl -i -u userName:Author-Token "https://api.github.com/orgs/{org}/repos?per_page=100&page=1"
 
   https://kigiri.github.io/fetch/
 ```
