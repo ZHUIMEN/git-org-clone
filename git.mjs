@@ -13,7 +13,6 @@ const token = 'xxxx'
 const org = argv.org;  
 if(!token||token ==='xxxx'){
     exitWithError('请前往GitHub申请Authorization： https://github.com/settings/apps')
-      
 }
 if(!org){
     exitWithError('请填写 ./git.mjs -org orgName')    
@@ -51,7 +50,7 @@ cd(`./backups_${org}`)
 const cloneAllRemoteBranch = async (gitUrl,name)=>{
     // https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches
     await $`git clone ${gitUrl}`
-    cd(`./${name}`)
+    await cd(`./${name}`)
    const  branchLenth = await $`git branch -r | grep -v '\\->'` 
    if(branchLenth.stdout.split('\n').length>2){
     try{
