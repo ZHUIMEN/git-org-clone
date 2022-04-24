@@ -53,19 +53,22 @@ const cloneAllRemoteBranch = async (gitUrl,name)=>{
     
     await cd(`./${name}`)
    const  branchLenth = await $`git branch -r | grep -v '\\->'` 
+
    if(branchLenth.stdout.split('\n').length>2){
     try{
-        await $`git branch -r | grep -v "\\->" | while read remote; do git branch --track "\${remote#origin/}" "$remote"; done`
+        const HEADbranch = await $`git branch -r | grep "\\->"`
+        await $`git branch -r | grep -v "${(HEADbranch.stdout.split(' -> ')[1]).trim()}" | while read remote; do git branch --track "\${remote#origin/}" "$remote"; done`
         await $`git fetch --all`;
         await $`git pull`
     }catch(e){
         console.error(e);
+        await cd(`../`)
     }
    }
    await cd(`../`)
 }
 
-Promise.all(repos.map(item=>{
+Promise.allSettled(repos.map(item=>{
     return cloneAllRemoteBranch(item.ssh_url,item.name)
 }))
 

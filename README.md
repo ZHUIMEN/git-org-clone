@@ -20,5 +20,5 @@ https://github.com/settings/apps
 ### 使用
  ```
  chmod u+x ./git.mjs
- ./git.mjs --org {rogName} --token {token}
+ ./git.mjs --org {rogName} --token '{token}'
  ```  
