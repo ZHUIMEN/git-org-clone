@@ -9,7 +9,7 @@
  * 3、复制 “Basic xxxxxxxx”  粘贴到 token
  *  
  */
-const token = 'xxxx'
+const token = argv.token
 const org = argv.org;  
 if(!token||token ==='xxxx'){
     exitWithError('请前往GitHub申请Authorization： https://github.com/settings/apps')
