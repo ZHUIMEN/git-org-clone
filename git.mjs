@@ -9,7 +9,7 @@
  * 3、复制 “Basic xxxxxxxx”  粘贴到 token
  *  
  */
-const token = 'Basic WkhVSU1FTjpnaHBfWDFNT2c4a0hmYXpHSFJRQkMxMkplU1BkVXVlTDBVMjcyUEFG'
+const token = 'xxxx'
 const org = argv.org;  
 if(!token||token ==='xxxx'){
     exitWithError('请前往GitHub申请Authorization： https://github.com/settings/apps')
@@ -63,10 +63,10 @@ const cloneAllRemoteBranch = async (gitUrl,name)=>{
     }
    }
 }
-cloneAllRemoteBranch('git@github.com:ZHUIMEN/git-org-clone.git','git-org-clone')
-// Promise.all(repos.map(item=>{
-//     return cloneAllRemoteBranch(item.ssh_url,item.name)
-// }))
+
+Promise.all(repos.map(item=>{
+    return cloneAllRemoteBranch(item.ssh_url,item.name)
+}))
 
 
 function exitWithError(errorMessage) {
