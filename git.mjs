@@ -52,6 +52,8 @@ const cloneAllRemoteBranch = async (gitUrl,name)=>{
     // https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches
     await $`git clone ${gitUrl}`
     cd(`./${name}`)
+   const  branchLenth = $`git branch -r | grep -v '\\->'` 
+   if(branchLenth.stdout.split('\n').length>2){
     try{
         await $`git branch -r | grep -v "\\->" | while read remote; do git branch --track "\${remote#origin/}" "$remote"; done`
         await $`git fetch --all`;
@@ -59,7 +61,7 @@ const cloneAllRemoteBranch = async (gitUrl,name)=>{
     }catch(e){
         console.error(e);
     }
-    
+   }
 }
 
 Promise.all(repos.map(item=>{
