@@ -50,6 +50,7 @@ cd(`./backups_${org}`)
 const cloneAllRemoteBranch = async (gitUrl,name)=>{
     // https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches
     await $`git clone ${gitUrl}`
+    
     await cd(`./${name}`)
    const  branchLenth = await $`git branch -r | grep -v '\\->'` 
    if(branchLenth.stdout.split('\n').length>2){
@@ -61,6 +62,7 @@ const cloneAllRemoteBranch = async (gitUrl,name)=>{
         console.error(e);
     }
    }
+   await cd(`../`)
 }
 
 Promise.all(repos.map(item=>{
